@@ -6,15 +6,15 @@ using namespace std;
 
 class MainMenu {
 private:
-  string menu = "[H]ome [D]eposit [B]alance [W]ithdrawal [E]xit";
-  static int const MAX_LIMIT = 10000;
+    string menu = "[H]ome [D]eposit [B]alance [W]ithdrawal [E]xit";
+    static int const MAX_LIMIT = 10000;
 
 public:
-  void showMenu () { cout<<menu<<endl; }
+    void showMenu () { cout<<menu<<endl; }
 };
 
 int main () {
-  MainMenu menu;
-  menu.showMenu();
-  return 0;
+    MainMenu menu;
+    menu.showMenu();
+    return 0;
 }
