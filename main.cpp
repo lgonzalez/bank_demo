@@ -4,7 +4,7 @@
 #include <stdio.h>
 using namespace std;
 
-class MainMenu {
+class UserBank {
 private:
     const string menu = "[H]ome [D]eposit [B]alance [W]ithdrawal [E]xit";
     static int const MAX_LIMIT = 10000;
@@ -13,8 +13,8 @@ private:
 
 protected:
     static const int MAX_TRIES = 3;
+    int userBalance = 5000;
     const string triesMsg = "You exceeded the number of tries";
-
 
 public:
     // Clears screen and prints main menu
@@ -29,6 +29,9 @@ public:
         cin>>userOption;
         switch (userOption) {
         case HOME:
+            showMenu();
+            readSelection();
+            break;
         case DEPOSIT:
         case BALANCE:
         case WITHDRAWAL:
@@ -45,10 +48,22 @@ public:
             readSelection();
         }
     }
+
+    char getSelection() { return userOption; }
+
+};
+
+class UserBalance: public UserBank {
+private:
+    const string balanceMsg = "Your current account balance is: ";
+
+public:
+    int getBalance() { return userBalance; }
+    void printBalance() { cout<<balanceMsg<<userBalance<<endl; }
 };
 
 int main () {
-    MainMenu menu;
+    UserBank menu;
     menu.showMenu();
     menu.readSelection();
     return 0;
