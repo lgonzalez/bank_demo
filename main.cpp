@@ -87,6 +87,63 @@ public:
     }
 };
 
+class Withdrawal: public UserBank {
+private:
+    int billDenom[4] = {0, 0, 0, 0}; // Bill denominations (500, 200, 100, 50)
+    int coinDenom[3] = {0, 0, 0}; // Coin denominations (20, 10, 5)
+    int amount; // amount to withdraw
+    int aux; //self explanatory variable name ;)
+    const string withdrawMsg = "Enter the amount to withdraw: ";
+    const int bills[4] = {500, 200, 100, 50};
+    const int coins[3] = {20, 10, 5};
+    const int bSize = 4;
+    const int cSize = 3;
+    void compareAndAdd(const int *denom, int *values, int index) {
+        while (denom[index] <= aux) {
+            values[index]++;
+            aux -= denom[index];
+        }
+    }
+    void printMoney(const int *denom, int *values, int size) {
+        for (int i = 0; i < size; i++) {
+            if (values[i] == 0) continue;
+            cout << denom[i] << " - " << values[i] << endl;
+        }
+    }
+
+public:
+    Withdrawal() { // Constructor initialize class attributes
+            aux = amount = 0;
+    }
+    void readAmount() {
+        cout << withdrawMsg;
+        cin >> amount;
+        aux = amount;
+    }
+    void calculateBills() {
+        for (int i = 0; i < bSize; i++) { compareAndAdd(bills, billDenom, i); }
+    }
+    void calculateCoins() {
+        for (int i = 0; i < cSize; i++) { compareAndAdd(coins, coinDenom, i); }
+    }
+    void calculateAll() {
+        calculateBills();
+        calculateCoins();
+    }
+    void printBills() {
+        cout << "Bills:" << endl;
+        printMoney(bills, billDenom, bSize);
+    }
+    void printCoins() {
+        cout << "Coins:" << endl;
+        printMoney(coins, coinDenom, cSize);
+    }
+    void printAll() {
+        printBills();
+        printCoins();
+    }
+};
+
 int main () {
     UserBank menu;
     menu.showMenu();
