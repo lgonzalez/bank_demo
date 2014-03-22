@@ -20,13 +20,13 @@ public:
     // Clears screen and prints main menu
     void showMenu () {
         system("clear");
-        cout<<menu<<endl;
+        cout << menu << endl;
     }
 
     // Reads user input and validates it
     void readSelection () {
         static int count = 1;
-        cin>>userOption;
+        cin >> userOption;
         switch (userOption) {
         case HOME:
             showMenu();
@@ -40,10 +40,10 @@ public:
             return;
         default:
             if (count >= MAX_TRIES) {
-                cout<<triesMsg<<endl;
+                cout << triesMsg << endl;
                 break;
             }
-            cout<<"Unknown option, please try again"<<endl;
+            cout << "Unknown option, please try again" << endl;
             count++;
             readSelection();
         }
@@ -59,7 +59,7 @@ private:
 
 public:
     int getBalance() { return userBalance; }
-    void printBalance() { cout<<balanceMsg<<userBalance<<endl; }
+    void printBalance() { cout << balanceMsg << userBalance << endl; }
 };
 
 class Deposit: public UserBank {
