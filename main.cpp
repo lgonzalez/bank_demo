@@ -62,6 +62,31 @@ public:
     void printBalance() { cout<<balanceMsg<<userBalance<<endl; }
 };
 
+class Deposit: public UserBank {
+private:
+    const string enterMsg = "Enter the amount to deposit";
+    const string maxMsg = "You exceeded the allowed limit: ";
+    static const int MAX_LIMIT = 10000;
+    int amount = 0;
+
+public:
+    void addAmount() { userBalance += amount; }
+    void readAmount() {
+        static int count = 1;
+        cout << enterMsg << endl;
+        cin >> amount;
+        if (amount > MAX_LIMIT) { // Try again if max amount is exceeded
+            cout << maxMsg << MAX_LIMIT << endl;
+            if (count >= MAX_TRIES) {
+                cout << triesMsg << endl;
+                return;
+            }
+            count++;
+            readAmount();
+        }
+    }
+};
+
 int main () {
     UserBank menu;
     menu.showMenu();
