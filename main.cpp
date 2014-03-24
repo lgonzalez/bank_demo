@@ -1,4 +1,4 @@
-#include "userinterface.h"
+#include <userinterface.h>
 
 int main () {
     UserInterface ui;
